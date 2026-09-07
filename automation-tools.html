@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>자동화 도구 | 마주온</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{--ink:#1c2540;--sub:#6b7280;--line:#e7e9ee;--bg:#f4f5f8;--accent:#d94f83;--accent-deep:#b83a6a;}
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{margin:0;font-family:"Pretendard","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;}
+  a{text-decoration:none;color:inherit;}
+  header.top{background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:14px 32px;flex:0 0 auto;}
+  .back{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#3a4256;}
+  .back svg{width:18px;height:18px;}
+  .divider{width:1px;height:16px;background:var(--line);}
+  h1{font-size:18px;font-weight:800;margin:0;}
+  main{max-width:760px;width:100%;margin:0 auto;padding:20px 24px 16px;flex:1;min-height:0;display:flex;flex-direction:column;}
+  .hero{background:linear-gradient(175deg,var(--accent),var(--accent-deep));border-radius:16px;padding:16px 20px;color:#fff;margin-bottom:16px;flex:0 0 auto;}
+  .hero .tag{font-size:12px;font-weight:700;opacity:.85;margin-bottom:3px;}
+  .hero h2{font-size:17px;font-weight:800;margin:0 0 3px;}
+  .hero p{font-size:12px;margin:0;opacity:.9;line-height:1.4;}
+  .content-area{flex:1;min-height:0;overflow-y:auto;padding-right:4px;}
+  .list{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .row{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;transition:box-shadow .15s ease, transform .15s ease;}
+  .row:hover{box-shadow:0 4px 14px rgba(20,30,60,.08);transform:translateY(-1px);}
+  .row .ic{width:28px;height:28px;border-radius:8px;background:#f4f5f8;display:flex;align-items:center;justify-content:center;font-size:14px;flex:0 0 auto;}
+  .row .txt{flex:1;font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.35;}
+  .row .arrow{color:#c6cad4;font-size:18px;flex:0 0 auto;}
+  .placeholder{text-align:center;padding:40px 20px;color:var(--sub);font-size:13.5px;border:1px dashed var(--line);border-radius:14px;}
+
+  .jumpnav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;flex:0 0 auto;}
+  .jumpnav button{
+    font-family:inherit;font-size:12px;font-weight:700;color:#3a4256;background:#fff;
+    border:1px solid var(--line);border-radius:20px;padding:7px 13px;cursor:pointer;
+  }
+  .jumpnav button:hover{border-color:#c6cad4;}
+  .jumpnav button.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+  .group{display:none;}
+  .group.active{display:block;}
+  .ghead{display:flex;align-items:flex-start;gap:9px;margin-bottom:11px;}
+  .gdot{width:9px;height:9px;border-radius:50%;margin-top:5px;flex:0 0 auto;}
+  .gtitle{font-size:15px;font-weight:800;color:var(--ink);}
+  .gdesc{font-size:11.5px;color:var(--sub);margin-top:2px;}
+
+  @media (max-width:620px){
+    .list{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="back" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke="#3a4256" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    행정톡으로
+  </a>
+  <div class="divider"></div>
+  <h1>자동화 도구</h1>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="tag">행정톡 · 자동화 도구</div>
+    <h2>반복 업무를 자동으로</h2>
+    <p>예산·회계부터 인사·시설까지, 업무 자동화 도구를 카테고리별로 모았습니다.</p>
+  </div>
+
+  <nav class="jumpnav" id="tabs">
+    <button class="active" data-target="sec-budget">예산·회계 자동화</button>
+    <button data-target="sec-purchase">구매·품의 자동화</button>
+    <button data-target="sec-report">실적보고·집계</button>
+    <button data-target="sec-hr">인사·복무 자동화</button>
+    <button data-target="sec-facility">시설·기록물 관리</button>
+    <button data-target="sec-security">보안·통합 도구</button>
+  </nav>
+
+  <div class="content-area">
+  <section class="group active" id="sec-budget">
+    <div class="ghead">
+      <span class="gdot" style="background:#d94f83;"></span>
+      <div><div class="gtitle">예산·회계 자동화</div><div class="gdesc">예산 집행, 지출증빙, 카드전표 등 회계 관련 자동화 도구</div></div>
+    </div>
+    <div class="list">
+      <a class="row" href="https://xn--3j4bn7f.net/relese/49"><span class="ic">📗</span><span class="txt">교특회계 집행실적 확인 프로그램</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">📊</span><span class="txt">깔끔한 예산실시간 분석(예산/추경/결산)</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">📄</span><span class="txt">지출증빙서 표지 생성기</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">📈</span><span class="txt">지출분석기 Pro</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">💳</span><span class="txt">법인카드/업무추진비 산출 자동화(상품권 구매내역 추가버전)</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">🧾</span><span class="txt">깔끔한 관외 여비정산 서식 6차 업데이트 버전</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">💳</span><span class="txt">온라인결제 원인행위 자동생성기</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">🧮</span><span class="txt">스마트 카드전표 판독 및 품의자동화(beta)</span><span class="arrow">›</span></a>
+    </div>
+  </section>
+
+  <section class="group" id="sec-purchase">
+    <div class="ghead">
+      <span class="gdot" style="background:#e79312;"></span>
+      <div><div class="gtitle">구매·품의 자동화</div><div class="gdesc">쇼핑몰 장바구니부터 에듀파인 품의까지 이어주는 자동화 도구</div></div>
+    </div>
+    <div class="list">
+      <a class="row" href="#"><span class="ic">🛒</span><span class="txt">인터넷쇼핑몰 장바구니 원클릭 자동화(쿠팡·G마켓·11번가·이마트몰·S2B)</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">🛒</span><span class="txt">온라인 쇼핑몰 장바구니 에듀파인 자동 품의</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">📦</span><span class="txt">물품분석기 Pro</span><span class="arrow">›</span></a>
+    </div>
+  </section>
+
+  <section class="group" id="sec-report">
+    <div class="ghead">
+      <span class="gdot" style="background:#2f6fed;"></span>
+      <div><div class="gtitle">실적보고·집계</div><div class="gdesc">실적보고서 작성과 자료 취합을 자동화하는 도구</div></div>
+    </div>
+    <div class="list">
+      <a class="row" href="#"><span class="ic">📝</span><span class="txt">지역경제활성화 실적보고(Speed버전) 공문자동작성</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">📊</span><span class="txt">지역경제활성화 실적보고 자동 집계</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">📑</span><span class="txt">엑셀 만능취합기</span><span class="arrow">›</span></a>
+    </div>
+  </section>
+
+  <section class="group" id="sec-hr">
+    <div class="ghead">
+      <span class="gdot" style="background:#0f9d8a;"></span>
+      <div><div class="gtitle">인사·복무 자동화</div><div class="gdesc">인사, 근태, 보험 관련 문서 처리를 자동화하는 도구</div></div>
+    </div>
+    <div class="list">
+      <a class="row" href="#"><span class="ic">📮</span><span class="txt">연말정산용 기타소득 송부 프로그램</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">🖐️</span><span class="txt">지문인식 근태기기 나이스 상신 자동화(ADT·KT·에스원)</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">🎓</span><span class="txt">이수증 일괄 추출기</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">🏥</span><span class="txt">4대보험 공제내역 고지서 자동화(업데이트)</span><span class="arrow">›</span></a>
+    </div>
+  </section>
+
+  <section class="group" id="sec-facility">
+    <div class="ghead">
+      <span class="gdot" style="background:#6a4fd6;"></span>
+      <div><div class="gtitle">시설·기록물 관리</div><div class="gdesc">통학차량, 학교도면, 기록물 대장 등 시설·기록 관리 도구</div></div>
+    </div>
+    <div class="list">
+      <a class="row" href="#"><span class="ic">🚌</span><span class="txt">통학차량 노선도 자동 그리기 프로그램</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">🗺️</span><span class="txt">학교도면 pro 초안(beta)</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">🗂️</span><span class="txt">기록물 대장 Pro</span><span class="arrow">›</span></a>
+    </div>
+  </section>
+
+  <section class="group" id="sec-security">
+    <div class="ghead">
+      <span class="gdot" style="background:#22305c;"></span>
+      <div><div class="gtitle">보안·통합 도구</div><div class="gdesc">개인정보 보호와 여러 계산기를 하나로 묶은 통합 도구</div></div>
+    </div>
+    <div class="list">
+      <a class="row" href="#"><span class="ic">🔒</span><span class="txt">엑셀 내 개인정보(주민번호, 휴대폰번호) 검출기</span><span class="arrow">›</span></a>
+      <a class="row" href="#"><span class="ic">🧰</span><span class="txt">충남교행 업무도구(통합 계산기)</span><span class="arrow">›</span></a>
+    </div>
+  </section>
+  </div>
+</main>
+
+<script>
+  const DEFAULT_TAB = 'sec-budget';
+  const tabs = document.querySelectorAll('#tabs button');
+  const groups = document.querySelectorAll('.group');
+  const contentArea = document.querySelector('.content-area');
+
+  function selectTab(targetId){
+    tabs.forEach(b => b.classList.toggle('active', b.dataset.target === targetId));
+    groups.forEach(g => { g.style.display = (g.id === targetId) ? 'block' : 'none'; });
+  }
+
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    selectTab(btn.dataset.target);
+    contentArea.scrollTop = 0;
+  }));
+
+  function resetView(){
+    selectTab(DEFAULT_TAB);
+    contentArea.scrollTop = 0;
+    window.scrollTo(0, 0);
+  }
+
+  // Run immediately (script sits at the end of body, so all elements already exist),
+  // and again on every pageshow (covers back/forward navigation and bfcache restores),
+  // so only one section is ever visible no matter how the page was reached.
+  resetView();
+  window.addEventListener('pageshow', resetView);
+</script>
+
+</body>
+</html>

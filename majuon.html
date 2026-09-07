@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마주온 | 충남교육청 미래교육 통합플랫폼</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --ink:#1c2540;
+    --sub:#6b7280;
+    --line:#e7e9ee;
+    --bg:#f4f5f8;
+    --blue-logo:#2f6fed;
+
+    --sotong:#1f4faa;
+    --sotong-deep:#173c85;
+    --suup:#0e1730;
+    --suup-deep:#0a1024;
+    --mirae:#e79312;
+    --mirae-deep:#c97b08;
+    --haengjeong:#d94f83;
+    --haengjeong-deep:#b83a6a;
+
+    --card-fill: rgba(255,255,255,.09);
+    --card-fill-hover: rgba(255,255,255,.16);
+    --card-line: rgba(255,255,255,.20);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Pretendard","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);}
+  a{text-decoration:none;color:inherit;}
+
+  /* ---------- Header ---------- */
+  header.top{
+    background:#fff;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 32px;
+  }
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand .mark{
+    width:34px;height:34px;border-radius:9px;
+    background:linear-gradient(135deg,#3d7bff,#2255d6);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .brand .mark svg{width:19px;height:19px;}
+  .brand .word{font-size:21px;font-weight:800;color:#1a2a5e;letter-spacing:-.02em;}
+  .brand .div{width:1px;height:16px;background:var(--line);}
+  .brand .plat{font-size:15px;font-weight:600;color:#3a4256;}
+
+  .who{display:flex;align-items:center;gap:16px;}
+  .who .hello{font-size:13.5px;color:#556;}
+  .who .hello b{color:var(--ink);font-weight:700;}
+  .who .org{font-size:12.5px;color:var(--sub);}
+  .logout{
+    display:flex;align-items:center;gap:6px;
+    border:1px solid var(--line);border-radius:20px;
+    padding:7px 14px;font-size:13px;font-weight:600;color:#3a4256;
+  }
+
+  /* ---------- Notice bar ---------- */
+  .notice{
+    background:#eef0f4;display:flex;align-items:center;gap:12px;
+    padding:11px 32px;font-size:14px;color:#3a4256;
+  }
+  .notice .date-icon{
+    width:26px;height:26px;border-radius:7px;background:#22305c;
+    display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+  }
+  .notice .date-icon svg{width:15px;height:15px;}
+  .notice b{font-weight:700;}
+  .notice .close{margin-left:auto;color:#8a90a0;cursor:pointer;font-size:16px;line-height:1;}
+
+  /* ---------- Icon nav row ---------- */
+  nav.iconrow{
+    background:#fff;display:flex;justify-content:center;gap:10px;
+    padding:26px 20px;flex-wrap:wrap;border-bottom:1px solid var(--line);
+  }
+  .inav{
+    width:96px;display:flex;flex-direction:column;align-items:center;gap:9px;
+    padding:6px 4px;border-radius:12px;cursor:pointer;
+  }
+  .inav:hover{background:#f5f6f9;}
+  .inav .tile{
+    width:52px;height:52px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(20,30,60,.08);
+  }
+  .inav .tile svg{width:24px;height:24px;}
+  .inav span{font-size:12px;color:#3a4256;text-align:center;line-height:1.3;font-weight:500;}
+
+  /* ---------- Four-panel grid ---------- */
+  main.grid{display:grid;grid-template-columns:repeat(4,1fr);}
+  section.panel{padding:36px 22px 44px;color:#fff;position:relative;overflow:hidden;}
+  section.panel h2{font-size:24px;font-weight:800;margin:0 0 26px;letter-spacing:-.02em;}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .card{
+    grid-column:span 1;
+    background:var(--card-fill);border:1px solid var(--card-line);border-radius:12px;
+    padding:16px 14px;display:flex;flex-direction:column;gap:10px;
+    transition:background .15s ease, transform .15s ease;
+    min-height:64px;
+  }
+  .card:hover{background:var(--card-fill-hover);transform:translateY(-2px);}
+  .card.wide{grid-column:span 2;flex-direction:row;align-items:center;}
+  .card .top{display:flex;align-items:center;gap:10px;}
+  .card .ic{
+    width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.14);
+    display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+  }
+  .card .ic svg{width:18px;height:18px;}
+  .card .label{font-size:14.5px;font-weight:700;line-height:1.3;}
+  .card .desc{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px;}
+  .card .desc li{font-size:11.5px;color:rgba(255,255,255,.78);line-height:1.5;}
+  .card.new{border-style:dashed;position:relative;}
+  .card.new .badge{
+    position:absolute;top:-9px;right:12px;background:#ffe14d;color:#5c4400;
+    font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;letter-spacing:.02em;
+  }
+
+  .haeng-buttons{display:flex;flex-direction:column;gap:14px;}
+  .hbtn{
+    display:flex;align-items:center;gap:16px;
+    background:var(--card-fill);border:1px solid var(--card-line);border-radius:16px;
+    padding:22px 20px;transition:background .15s ease, transform .15s ease;
+  }
+  .hbtn:hover{background:var(--card-fill-hover);transform:translateY(-2px);}
+  .hbtn-ic{
+    width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.16);
+    display:flex;align-items:center;justify-content:center;font-size:22px;flex:0 0 auto;
+  }
+  .hbtn-text{flex:1;}
+  .hbtn-title{font-size:17px;font-weight:800;color:#fff;margin-bottom:4px;}
+  .hbtn-sub{font-size:12.5px;color:rgba(255,255,255,.75);}
+  .hbtn-arrow{font-size:24px;color:#fff;opacity:.7;flex:0 0 auto;}
+
+  #p-sotong{background:linear-gradient(175deg,var(--sotong),var(--sotong-deep));}
+  #p-suup{background:linear-gradient(175deg,var(--suup),var(--suup-deep));}
+  #p-mirae{background:linear-gradient(175deg,var(--mirae),var(--mirae-deep));}
+  #p-haeng{background:linear-gradient(175deg,var(--haengjeong),var(--haengjeong-deep));}
+
+  .spark{position:absolute;opacity:.5;}
+  .s1{top:18px;right:22px;} .s2{bottom:26px;right:16px;} .s3{bottom:90px;right:40px;}
+
+  footer{background:#fff;text-align:center;padding:22px;font-size:12px;color:var(--sub);border-top:1px solid var(--line);}
+
+  @media (max-width:980px){
+    main.grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:620px){
+    main.grid{grid-template-columns:1fr;}
+    header.top{flex-direction:column;align-items:flex-start;gap:10px;}
+    .who{align-self:flex-end;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 13.5-5.8M20 12a8 8 0 0 1-13.5 5.8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M17.5 3.5v3.2h-3.2M6.5 20.5v-3.2h3.2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="word">마주온</span>
+    <div class="div"></div>
+    <span class="plat">충남교육청 미래교육 통합플랫폼</span>
+  </div>
+  <div class="who">
+    <span class="hello">반갑습니다. <b>서산교육지원청 이의호</b></span>
+    <span class="org">충청남도교육청</span>
+    <span class="logout">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#3a4256" stroke-width="2"/><path d="M4 20c1.6-4 5-6 8-6s6.4 2 8 6" stroke="#3a4256" stroke-width="2" stroke-linecap="round"/></svg>
+      로그아웃
+    </span>
+  </div>
+</header>
+
+<div class="notice">
+  <div class="date-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#fff" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <span><b>8월 28일(금)</b> &nbsp; 오늘의 일정이 없습니다.</span>
+  <span class="close">&times;</span>
+</div>
+
+<nav class="iconrow" id="iconrow"></nav>
+
+<main class="grid">
+
+  <section class="panel" id="p-sotong">
+    <h2>소통톡</h2>
+    <div class="cards">
+      <div class="card wide"><div class="ic">💬</div><div class="label">충남톡(실시간 소통 서비스)</div></div>
+      <div class="card"><div class="ic">🗓️</div><div class="label">일정관리</div></div>
+      <div class="card"><div class="ic">🗄️</div><div class="label">충남온자료실</div></div>
+      <div class="card"><div class="ic">✉️</div><div class="label">충남온메일</div></div>
+      <div class="card"><div class="ic">📋</div><div class="label">충남온설문</div></div>
+      <div class="card"><div class="ic">📝</div><div class="label">유레카설문</div></div>
+      <div class="card"><div class="ic">🎙️</div><div class="label">클로바노트</div></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-suup">
+    <h2>수업톡</h2>
+    <div class="cards">
+      <div class="card"><div class="ic">🌐</div><div class="label">충남온배움터</div></div>
+      <div class="card"><div class="ic">🏠</div><div class="label">창의적체험활동자료</div></div>
+      <div class="card"><div class="ic">📱</div><div class="label">계기교육자료</div></div>
+      <div class="card"><div class="ic">📖</div><div class="label">교수학습자료</div></div>
+      <div class="card"><div class="ic">❓</div><div class="label">퀴즈앤</div></div>
+      <div class="card"><div class="ic">🖊️</div><div class="label">아이글(AiGLE) AI서논술평가</div></div>
+      <div class="card"><div class="ic">🎨</div><div class="label">미리캔버스</div></div>
+      <div class="card"><div class="ic">🔊</div><div class="label">클로바 더빙</div></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-mirae">
+    <h2>미래톡</h2>
+    <div class="cards">
+      <div class="card"><div class="ic">🤖</div><div class="label">인공지능(AI)교육</div></div>
+      <div class="card"><div class="ic">💻</div><div class="label">소프트웨어(SW)교육</div></div>
+      <div class="card"><div class="ic">🌱</div><div class="label">생태환경교육</div></div>
+      <div class="card"><div class="ic">🧊</div><div class="label">상상이룸교육</div></div>
+      <div class="card"><div class="ic">⚙️</div><div class="label">미래형과학교육</div></div>
+      <div class="card"><div class="ic">🚫</div><div class="label">디지털소양교육</div></div>
+      <div class="card"><div class="ic">📄</div><div class="label">정보화기기 사용법</div></div>
+      <div class="card"><div class="ic">🚶</div><div class="label">충남전자등록부</div></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-haeng">
+    <h2>행정톡</h2>
+
+    <div class="haeng-buttons">
+      <a class="hbtn" href="quick-guide.html">
+        <div class="hbtn-ic">📚</div>
+        <div class="hbtn-text">
+          <div class="hbtn-title">빠른 편람</div>
+          <div class="hbtn-sub">자주 찾는 자료 모음 바로가기</div>
+        </div>
+        <div class="hbtn-arrow">›</div>
+      </a>
+
+      <a class="hbtn" href="automation-tools.html">
+        <div class="hbtn-ic">🤖</div>
+        <div class="hbtn-text">
+          <div class="hbtn-title">자동화 도구</div>
+          <div class="hbtn-sub">업무 자동화 서비스 바로가기</div>
+        </div>
+        <div class="hbtn-arrow">›</div>
+      </a>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>충청남도교육청 · 마주온(마주하는 온라인) 미래교육 통합플랫폼</footer>
+
+<script>
+  const icons = [
+    ["마주온이란","#3d7bff","🔗"],
+    ["한글다듬이","#e79312","🎖️"],
+    ["초등교무학사실무","#22305c","🎓"],
+    ["전입학 안내","#e05b3c","🚪"],
+    ["연수등록부","#0f9d8a","🖥️"],
+    ["들락날락","#22305c","🚪"],
+    ["어울림톡","#2fa84f","🔗"],
+    ["문자알리미","#6a4fd6","✉️"],
+    ["가상누리터","#6a4fd6","💾"],
+    ["초록발자국","#2fa84f","👣"],
+    ["마주온 협업","#e79312","🗂️"],
+    ["Q&A","#22305c","❓"],
+    ["마주온 톡톡","#2f6fed","💬"],
+  ];
+  const row = document.getElementById("iconrow");
+  icons.forEach(([label,color,glyph])=>{
+    const a = document.createElement("a");
+    a.className = "inav";
+    a.innerHTML = `<div class="tile" style="background:${color}22;color:${color};font-size:22px;">${glyph}</div><span>${label}</span>`;
+    row.appendChild(a);
+  });
+  document.querySelector('.notice .close').addEventListener('click', e => {
+    e.target.closest('.notice').style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
